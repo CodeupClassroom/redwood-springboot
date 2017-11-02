@@ -22,6 +22,7 @@
 
 </div>
 
+<!--The th:each attribute repeats the tag as many items exists in the list -->
 <ul th:if="${names.size() != 0}">
    <li th:each="nm : ${names}" th:text="${nm}"></li>
 </ul>

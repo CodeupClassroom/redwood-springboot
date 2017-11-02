@@ -6,12 +6,14 @@
 </head>
 <body>
 
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
 
 <div>
     <p th:text="${name}"></p>
 </div>
 
 <div class="days">
+
     <p th:if="${rainy == true}">
         Bring an umbrella
     </p>
@@ -19,6 +21,11 @@
     <p th:unless="${rainy == true}">
         Wear shorts
     </p>
+
+    <!--Another way to do it-->
+    <!--<p th:if="${rainy != true}">-->
+        <!--Wear shorts-->
+    <!--</p>-->
 
 </div>
 

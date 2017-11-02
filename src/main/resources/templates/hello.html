@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
+
+<div>
+    <p th:text="${name}"></p>
+</div>
+
+<div class="days">
+
+    <p th:if="${rainy == true}">
+        Bring an umbrella
+    </p>
+
+    <p th:unless="${rainy == true}">
+        Wear shorts
+    </p>
+
+    <!--Another way to do it-->
+    <!--<p th:if="${rainy != true}">-->
+        <!--Wear shorts-->
+    <!--</p>-->
+
+</div>
+
+<!--The th:each attribute repeats the tag as many items exists in the list -->
+<ul th:if="${names.size() != 0}">
+   <li th:each="nm : ${names}" th:text="${nm}"></li>
+</ul>
+
+
+</body>
+</html>

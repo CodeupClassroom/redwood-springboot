@@ -11,11 +11,21 @@
     <p th:text="${name}"></p>
 </div>
 
-<ul>
-    <li>L</li>
-    <li>F</li>
-    <li>R</li>
+<div class="days">
+    <p th:if="${rainy == true}">
+        Bring an umbrella
+    </p>
+
+    <p th:unless="${rainy == true}">
+        Wear shorts
+    </p>
+
+</div>
+
+<ul th:if="${names.size() != 0}">
+   <li th:each="nm : ${names}" th:text="${nm}"></li>
 </ul>
+
 
 </body>
 </html>

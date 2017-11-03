@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:fragment="main-header">
+<head th:fragment="main-header(title)">
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title th:text="${title}"></title>
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>

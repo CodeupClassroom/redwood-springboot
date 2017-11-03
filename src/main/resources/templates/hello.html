@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: main-header('Hello World')"></head>
 <body>
 
 <nav th:replace="fragments/navbar :: mainNavbar"></nav>

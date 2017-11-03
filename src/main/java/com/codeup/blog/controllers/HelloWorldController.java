@@ -16,11 +16,11 @@ public class HelloWorldController {
         return "Hello, World!!";
     }
 
-    @ResponseBody
-    @GetMapping("/hello/{name}")
-    public String helloName(@PathVariable String name) {
-        return "Hello, " + name + "!!";
-    }
+//    @ResponseBody
+//    @GetMapping("/hello/{name}")
+//    public String helloName(@PathVariable String name) {
+//        return "Hello, " + name + "!!";
+//    }
 
     @ResponseBody
     @GetMapping("/hello/{firstName}/{lastName}")

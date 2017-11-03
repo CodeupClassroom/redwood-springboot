@@ -11,6 +11,9 @@
     <p th:text="${guess}"></p>
     Rnd:
     <p th:text="${rnd}"></p>
+
+    <h1 th:if="${win}">You Won!</h1>
+    <h1 th:if="${!win}">You Lost!</h1>
 </div>
 
 <li><a href="/roll-dice/1">1</a></li>

@@ -15,11 +15,15 @@ public class RollDiceController {
 
     @GetMapping("/roll-dice/{guess}")
     public String play(@PathVariable Integer guess, Model vModel){
-
+        // Generating a rnd number from 1 to 6
         int rnd = (int) (Math.random() * 6 + 1);
+
+        // Determines if you win or not
+        boolean win = (rnd == guess) ? true : false;
 
         vModel.addAttribute("guess", guess);
         vModel.addAttribute("rnd", rnd);
+        vModel.addAttribute("win", win);
 
         return "roll-dice";
     }

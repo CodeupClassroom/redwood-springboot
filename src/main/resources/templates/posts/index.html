@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/head :: main-header('All posts')"></head>
+<body>
+    <nav th:include="fragments/navbar :: mainNavbar"></nav>
+
+    <!-- Content of the page -->
+    <div th:each="post : ${posts}">
+        <h1 th:text="${post.title}"></h1>
+        <p th:text="${post.body}"></p>
+    </div>
+
+    <footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

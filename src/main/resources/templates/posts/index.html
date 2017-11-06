@@ -6,7 +6,10 @@
 
     <!-- Content of the page -->
     <div th:each="post : ${posts}">
-        <h1 th:text="${post.title}"></h1>
+        <h1>
+            <!--<a th:href="${'/posts/' + post.id}" th:text="${post.title}"></a>-->
+            <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+        </h1>
         <p th:text="${post.body}"></p>
     </div>
 

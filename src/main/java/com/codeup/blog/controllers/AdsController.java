@@ -1,6 +1,7 @@
 package com.codeup.blog.controllers;
 
 import com.codeup.blog.models.Ad;
+import com.codeup.blog.repositories.AdsRepository;
 import com.codeup.blog.services.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +14,18 @@ public class AdsController {
     // This is the service placeholder that will be final, that means it will not be changed
     // (it is a error to re-assign to a `final` variable or property)
     private final AdService adSvc;
+    private final AdsRepository adsDao;
 
     // Dependency Injection, everything ties together Services + Controller/ Class
     @Autowired
-    public AdsController(AdService adsScv){
+    public AdsController(AdService adsScv, AdsRepository adsDao){
         this.adSvc = adsScv;
+        this.adsDao = adsDao;
     }
 
     @GetMapping("/ads")
     public String showAds(Model vModel){
-        vModel.addAttribute("ads", adSvc.findAll());
+        vModel.addAttribute("ads", adsDao.findAll());
         return "ads/index";
     }
 
@@ -44,7 +47,7 @@ public class AdsController {
     // Store the ad, then show the index page
     @PostMapping("/ads/create")
     public String create(@ModelAttribute Ad ad) {
-        adSvc.save(ad);
+        adsDao.save(ad);
         // instead of duplicating the logic to show all the ads, we'll just
         // redirect there
         return "redirect:/ads";
@@ -52,15 +55,13 @@ public class AdsController {
 
     @GetMapping("/ads/{id}/edit")
     public String showEditForm(Model model, @PathVariable long id) {
-        model.addAttribute("ad", adSvc.findOne(id));
+        model.addAttribute("ad", adsDao.findOne(id));
         return "ads/edit";
     }
 
     @PostMapping("/ads/{id}/edit")
     public String updateAd(@ModelAttribute Ad editedAd, @PathVariable long id) {
-        Ad existingAd = adSvc.findOne(id);
-        existingAd.setTitle(editedAd.getTitle());
-        existingAd.setDescription(editedAd.getDescription());
+        adsDao.save(editedAd);
         return "redirect:/ads";
     }
 

@@ -5,6 +5,9 @@ public class Post {
     private String title;
     private String body;
 
+    public Post() {
+    }
+
     // Use on the CREATE action
     public Post(String title, String body) {
         this.title = title;

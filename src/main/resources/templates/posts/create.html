@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+</head>
+<body>
+<nav th:include="fragments/navbar :: mainNavbar"></nav>
+
+<h1>Create A Post</h1>
+
+<form method="post" action="/posts/create" th:object="${post}">
+    Title
+    <input type="text" th:field="*{title}" /> <br />
+    Body
+    <input type="text" th:field="*{body}" /> <br />
+    <input type="submit" />
+</form>
+
+<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

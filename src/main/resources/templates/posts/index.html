@@ -9,6 +9,7 @@
         <h1>
             <!--<a th:href="${'/posts/' + post.id}" th:text="${post.title}"></a>-->
             <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+            <a th:href="@{/posts/{id}/edit(id=${post.id})}" th:text="${'Edit: ' + post.title}"></a>
         </h1>
         <p th:text="${post.body}"></p>
     </div>

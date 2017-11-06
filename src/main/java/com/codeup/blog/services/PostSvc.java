@@ -27,12 +27,22 @@ public class PostSvc {
     }
 
     private void createDummyPosts() {
-        posts.add(new Post("Title 1", "Body 1"));
-        posts.add(new Post("Title 2", "Body 2"));
-        posts.add(new Post("Title 3", "Body 3"));
-        posts.add(new Post("Title 4", "Body 4"));
-        posts.add(new Post("Example 1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
-        posts.add(new Post("Example 2", "QWE Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
-        posts.add(new Post("Example 3", "ASD Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
+        save(new Post("Title 1", "Body 1"));
+        save(new Post("Title 2", "Body 2"));
+        save(new Post("Title 3", "Body 3"));
+        save(new Post("Title 4", "Body 4"));
+        Post longPost = new Post(
+            "Example 1",
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"
+        );
+        save(longPost);
+        save(new Post("Example 2", "QWE Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
+        save(new Post("Example 3", "ASD Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
+    }
+
+    public Post save(Post post) {
+        post.setId(posts.size() + 1);
+        posts.add(post);
+        return post;
     }
 }

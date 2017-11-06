@@ -1,0 +1,12 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<form th:fragment="form">
+    Title
+    <input th:field="*{title}" /> <br />
+    Body
+    <input th:field="*{body}" /> <br />
+    <input type="submit" />
+</form>
+
+</html>

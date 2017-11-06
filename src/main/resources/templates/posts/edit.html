@@ -10,14 +10,13 @@
 
 <h1>Edit This post</h1>
 
-<form method="post" th:action="${'/posts/' + post.id + '/edit'}" th:object="${post}">
-    Title
-    <input type="text" th:field="*{title}" /> <br />
-    Body
-    <input type="text" th:field="*{body}" /> <br />
-    <input type="submit" />
-</form>
+<form
+    th:include="posts/form :: form"
+    th:object="${post}"
+    method="post"
+    th:action="${'/posts/' + post.id + '/edit'}" />
 
 <footer th:include="fragments/footer :: footer"></footer>
+
 </body>
 </html>

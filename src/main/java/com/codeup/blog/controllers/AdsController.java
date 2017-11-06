@@ -5,10 +5,7 @@ import com.codeup.blog.services.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AdsController {
@@ -50,6 +47,20 @@ public class AdsController {
         adSvc.save(ad);
         // instead of duplicating the logic to show all the ads, we'll just
         // redirect there
+        return "redirect:/ads";
+    }
+
+    @GetMapping("/ads/{id}/edit")
+    public String showEditForm(Model model, @PathVariable long id) {
+        model.addAttribute("ad", adSvc.findOne(id));
+        return "ads/edit";
+    }
+
+    @PostMapping("/ads/{id}/edit")
+    public String updateAd(@ModelAttribute Ad editedAd, @PathVariable long id) {
+        Ad existingAd = adSvc.findOne(id);
+        existingAd.setTitle(editedAd.getTitle());
+        existingAd.setDescription(editedAd.getDescription());
         return "redirect:/ads";
     }
 

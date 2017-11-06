@@ -24,19 +24,24 @@ public class PostsController {
     }
 
     @GetMapping("/posts")
-    public String showAll(Model vModel)
-    {
+    public String showAll(Model vModel) {
         vModel.addAttribute("posts", service.findAll());
-
         return "posts/index";
     }
 
+    // auto-boxing
+    //int -> Integer
+    // long -> Long
+
+    // Extra step needed in this case
+    // Boxing is not automatic
+    // int -> long -> Long X
+    // This is fine because it doesn't interact with objects, they're both primitive types
+    // int -> long
+
     @GetMapping("/posts/{id}")
     public String showPost(@PathVariable int id, Model vModel){
-
-        Post post = new Post("Example 1", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!");
-
-        vModel.addAttribute("post", post);
+        vModel.addAttribute("post", service.findById(id));
         return "posts/show";
     }
 

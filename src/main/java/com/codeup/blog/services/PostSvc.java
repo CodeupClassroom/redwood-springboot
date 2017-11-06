@@ -18,6 +18,10 @@ public class PostSvc {
         createDummyPosts();
     }
 
+    public Post findById(long id) {
+        return posts.get((int) id - 1);
+    }
+
     public List<Post> findAll() {
         return posts;
     }

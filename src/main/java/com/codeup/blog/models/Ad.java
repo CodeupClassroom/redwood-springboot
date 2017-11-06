@@ -6,6 +6,9 @@ public class Ad {
     private String title;
     private String description;
 
+    public Ad() {
+    }
+
     public Ad(Long id, String title, String description) {
         this.id = id;
         this.title = title;

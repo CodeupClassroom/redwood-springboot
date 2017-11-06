@@ -7,10 +7,7 @@ import com.codeup.blog.models.Post;
 import com.codeup.blog.services.PostSvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -46,13 +43,22 @@ public class PostsController {
     }
 
     @GetMapping("/posts/create")
-    public String showCreateForm(){
-        return "view the form for creating a post";
+    public String showCreateForm(Model vModel){
+        vModel.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(){
-        return "create a new post";
+    public String createPost(@ModelAttribute Post post){
+        service.save(post);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String showEditForm(Model vModel, @PathVariable long id) {
+        Post existingPost = service.findById(id);
+        vModel.addAttribute("post", existingPost);
+        return "posts/edit";
     }
 
 }

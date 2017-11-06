@@ -4,14 +4,22 @@
 <body>
     <nav th:include="fragments/navbar :: mainNavbar"></nav>
 
+    <h1>Here's all the posts!</h1>
+
     <!-- Content of the page -->
-    <div th:each="post : ${posts}">
-        <h1>
-            <!--<a th:href="${'/posts/' + post.id}" th:text="${post.title}"></a>-->
-            <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
-        </h1>
-        <p th:text="${post.body}"></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" th:each="post : ${posts}">
+                <h2>
+                    <!--<a th:href="${'/posts/' + post.id}" th:text="${post.title}"></a>-->
+                    <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a>
+                </h2>
+                <a class="btn btn-sm btn-warning" th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+                <p th:text="${post.body}"></p>
+            </div>
+        </div>
     </div>
+
 
     <footer th:include="fragments/footer :: footer"></footer>
 </body>

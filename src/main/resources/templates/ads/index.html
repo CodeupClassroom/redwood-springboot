@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+</head>
+<body>
+<nav th:include="fragments/navbar :: mainNavbar" />
+
+<!-- Content of the page -->
+<div th:each="ad : ${ads}">
+    <h1 th:text="${ad.title}"></h1>
+    <p th:text="${ad.description}"></p>
+</div>
+
+<footer th:include="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,19 +39,14 @@ public class AdsController {
      */
 
     @GetMapping("/ads/create")
-    public String showCreateForm() {
+    public String showCreateForm(Model vModel) {
+        vModel.addAttribute("ad", new Ad());
         return "ads/create";
     }
 
     // Store the ad, then show the index page
     @PostMapping("/ads/create")
-    public String create(
-        @RequestParam(name = "title") String title,
-        @RequestParam(name = "description") String description
-    ) {
-        Ad ad = new Ad();
-        ad.setTitle(title);
-        ad.setDescription(description);
+    public String create(@ModelAttribute Ad ad) {
         adSvc.save(ad);
         // instead of duplicating the logic to show all the ads, we'll just
         // redirect there

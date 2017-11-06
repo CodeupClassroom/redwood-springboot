@@ -6,9 +6,10 @@
 
     <!-- Content of the page -->
 
-    <div>
+    <div class="container">
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>
+        <a th:href="${'/posts/' + post.id + '/edit'}" class="btn btn-warning">Edit This Post</a>
     </div>
 
     <footer th:include="fragments/footer :: footer"></footer>

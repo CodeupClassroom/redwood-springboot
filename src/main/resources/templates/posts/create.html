@@ -1,20 +1,20 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-</head>
+<head th:replace="fragments/head :: main-header('View post')"></head>
 <body>
 <nav th:include="fragments/navbar :: mainNavbar"></nav>
 
-<h1>Create A Post</h1>
 
-<form
-    th:include="posts/form :: form"
-    method="post"
-    action="/posts/create"
-    th:object="${post}" />
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1 class="text-center">Create A Post</h1>
+        <form
+            th:include="posts/form :: form"
+            method="post"
+            action="/posts/create"
+            th:object="${post}" />
+    </div>
+</div>
 
 <footer th:include="fragments/footer :: footer"></footer>
 </body>

@@ -2,11 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <form th:fragment="form">
-    Title
-    <input th:field="*{title}" /> <br />
-    Body
-    <input th:field="*{body}" /> <br />
-    <input type="submit" />
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" th:field="*{title}" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <input id="body" th:field="*{body}" class="form-control" />
+    </div>
+    <input type="submit" class="btn btn-primary btn-block" />
 </form>
 
 </html>

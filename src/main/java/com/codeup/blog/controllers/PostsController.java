@@ -61,4 +61,21 @@ public class PostsController {
         return "posts/edit";
     }
 
+    @PostMapping("/posts/{id}/edit")
+    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
+        // the post object we get from the form only has a title and body
+        // and in order to update an existing record, we need to have an id
+        // well use the path variable to set the id of the post object
+        // before we try to save it
+        post.setId(id);
+        service.save(post);
+        return "redirect:/posts/" + post.getId();
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String removeFromExistence(@PathVariable long id) {
+        service.delete(id);
+        return "redirect:/posts";
+    }
+
 }

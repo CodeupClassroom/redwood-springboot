@@ -3,6 +3,7 @@ package com.codeup.blog.models;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ads")
@@ -17,6 +18,13 @@ public class Ad {
 
     @Column(nullable = false)
     private String description;
+
+    @OneToOne
+    private User user;
+
+    // This doesn't mean that it's gonna to create a column, not a relationship in the mysql tables
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ad")
+    private List<AdImage> images;
 
     public Ad() {
     }
@@ -54,5 +62,21 @@ public class Ad {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<AdImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<AdImage> images) {
+        this.images = images;
     }
 }

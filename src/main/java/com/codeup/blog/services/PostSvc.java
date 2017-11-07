@@ -4,45 +4,44 @@
 package com.codeup.blog.services;
 
 import com.codeup.blog.models.Post;
+import com.codeup.blog.repositories.PostsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class PostSvc {
-    private List<Post> posts;
+    private final PostsRepository postDao;
 
-    public PostSvc() {
-        posts = new ArrayList<>();
-        createDummyPosts();
+    // Autowire an instance of our PostsRepository in
+    @Autowired
+    public PostSvc(PostsRepository postDao) {
+        this.postDao = postDao;
     }
+
+    /**
+     * All the methods in this service are thin wrappers around interacting with the postDao
+     * That is, they will all pass their parameters to the instance of the PostsRepository,
+     * and return whatever it returns
+     */
 
     public Post findById(long id) {
-        return posts.get((int) id - 1);
+        return postDao.findOne(id);
     }
 
-    public List<Post> findAll() {
-        return posts;
-    }
-
-    private void createDummyPosts() {
-        save(new Post("Title 1", "Body 1"));
-        save(new Post("Title 2", "Body 2"));
-        save(new Post("Title 3", "Body 3"));
-        save(new Post("Title 4", "Body 4"));
-        Post longPost = new Post(
-            "Example 1",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"
-        );
-        save(longPost);
-        save(new Post("Example 2", "QWE Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
-        save(new Post("Example 3", "ASD Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque commodi eligendi necessitatibus voluptates. At distinctio dolores minus molestiae mollitia nemo sapiente ut veniam voluptates! Corporis distinctio error quaerat vel!"));
+    // Iterable is a superclass of List, that is, a more generic type
+    public Iterable<Post> findAll() {
+        return postDao.findAll();
     }
 
     public Post save(Post post) {
-        post.setId(posts.size() + 1);
-        posts.add(post);
-        return post;
+        return postDao.save(post);
+    }
+
+    public void delete(long id) {
+        postDao.delete(id);
     }
 }

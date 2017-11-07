@@ -14,7 +14,7 @@ public class Post {
 
     // By default, String properties will be mapped to VARCHAR columns, if we want
     // a column of type TEXT, we can specify it like so:
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
     public Post() {
@@ -56,4 +56,5 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
 }

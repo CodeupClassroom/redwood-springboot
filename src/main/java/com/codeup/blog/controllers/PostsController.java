@@ -57,7 +57,7 @@ public class PostsController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
-        User user = usersDao.findOne(2L);
+        User user = usersDao.findByUsername("fer");
         post.setUser(user);
         service.save(post);
         return "redirect:/posts";

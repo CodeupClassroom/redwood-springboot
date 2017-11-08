@@ -31,6 +31,8 @@ public class SpringbootBlogApplication {
             redwood.enroll(new Student("Jordan", "jordan"));
             redwood.enroll(new Student("Terrel", "terrel"));
 
+            // It will run 3 inserts
+            // One for the Cohort, 2 for the Students
             cohorts.save(redwood);
 
             // Create a new quiz for redwood
@@ -45,12 +47,16 @@ public class SpringbootBlogApplication {
             secondQuestion.addOption(new QuestionOption("No", true));
             javaQuiz.addQuestion(secondQuestion);
 
+            // It will run 8 inserts
+            // One for the Quiz, 2 for the Questions, 5 for the options
             quizzes.save(javaQuiz);
 
-            Quiz java2Quiz = new Quiz(redwood);
+            // This will produce an exception. It is better to use Set for
+            // many to many relationships
+            /*Quiz java2Quiz = new Quiz(redwood);
             java2Quiz.addQuestion(newQuestion);
 
-            quizzes.save(java2Quiz);
+            quizzes.save(java2Quiz);*/
         };
     }
 }

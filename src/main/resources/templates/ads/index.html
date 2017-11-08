@@ -12,6 +12,8 @@
 <div th:each="ad : ${ads}">
     <h1 th:text="${ad.title}"></h1>
     <p th:text="${ad.description}"></p>
+    <img th:each="img : ${ad.images}" th:src="${img.url}" />
+    Username:<p th:text="${ad.user.username}"></p>
 </div>
 
 <footer th:include="fragments/footer :: footer"></footer>

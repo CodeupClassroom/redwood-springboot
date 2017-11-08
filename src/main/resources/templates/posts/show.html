@@ -9,6 +9,7 @@
     <div class="container">
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.body}"></p>
+        Created by: <a th:href="@{'mailto:' + ${post.user.email} }"><span th:text="${post.user.username}"></span></a>
 
         <!-- Buttons for editing + deleting -->
         <div class="row">

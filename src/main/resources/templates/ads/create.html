@@ -1,14 +1,11 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+<head th:include="fragments/head :: main-header('Create an ad')">
 </head>
 <body>
 <nav th:include="fragments/navbar :: mainNavbar" />
 
-<form action="/ads/create" method="post" th:object="${ad}">
+<form th:action="@{/ads/create}" method="post" th:object="${ad}">
     Title:
     <input th:field="*{title}" />
     <br />

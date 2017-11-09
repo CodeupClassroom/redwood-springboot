@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
 <head>
 
 </head>
@@ -10,9 +11,13 @@
 <nav id="my-nav" class="navbar navbar-default" th:fragment="mainNavbar">
     <ul class="nav navbar-nav">
         <li><a href="/">Index</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
-        <li>
+        <li sec:authorize="!isAuthenticated()">
+            <a href="/login">Login</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a href="/register">Register</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" th:method="post">
                 <button class="btn-link btn" style="margin-top: 8px">Logout</button>
             </form>

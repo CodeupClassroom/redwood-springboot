@@ -49,7 +49,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout") // append a query string value
             .and()
                 .authorizeRequests()
-                .antMatchers("/ads/create", "/posts/create") // only authenticated users can create ads
+                .antMatchers(
+                    "/ads/create",
+                    "/posts/create",
+                    //"/ads/{id}/edit",
+                    "/ads/?/edit"
+                ) // only authenticated users can create ads
                 .authenticated()
         ;
     }

@@ -1,9 +1,11 @@
 package com.codeup.blog.controllers;
 
 import com.codeup.blog.models.Ad;
+import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.AdsRepository;
 import com.codeup.blog.services.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +49,9 @@ public class AdsController {
     // Store the ad, then show the index page
     @PostMapping("/ads/create")
     public String create(@ModelAttribute Ad ad) {
+        // This gets the logged in user in the back end.
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ad.setUser(user);
         adsDao.save(ad);
         // instead of duplicating the logic to show all the ads, we'll just
         // redirect there

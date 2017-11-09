@@ -1,21 +1,18 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-</head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: main-header('All the ads')"></head>
 <body>
-<nav th:include="fragments/navbar :: mainNavbar" />
 
-<!-- Content of the page -->
-<div th:each="ad : ${ads}">
-    <h1 th:text="${ad.title}"></h1>
-    <p th:text="${ad.description}"></p>
-    <img th:each="img : ${ad.images}" th:src="${img.url}" />
-    Username:<p th:text="${ad.user.username}"></p>
-</div>
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
 
-<footer th:include="fragments/footer :: footer"></footer>
+    <!-- Content of the page -->
+    <div th:each="ad : ${ads}">
+        <h1 th:text="${ad.title}"></h1>
+        <p th:text="${ad.description}"></p>
+        <img th:each="img : ${ad.images}" th:src="${img.url}" />
+        Username:<p th:text="${ad.user.username}"></p>
+    </div>
+
+    <footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>

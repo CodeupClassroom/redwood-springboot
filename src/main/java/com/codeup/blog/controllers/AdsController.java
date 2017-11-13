@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class AdsController {
@@ -48,7 +53,20 @@ public class AdsController {
 
     // Store the ad, then show the index page
     @PostMapping("/ads/create")
-    public String create(@ModelAttribute Ad ad) {
+    public String create(@Valid Ad ad, Errors validation, Model model) {
+        if (ad.getTitle().contains("JS") && ad.getTitle().contains("Java")) {
+            validation.rejectValue(
+                "title",
+                "ad.title",
+                "Title cannot contain Java and JS they're not the same thing!!!!!!!!!!!!!!!"
+            );
+        }
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation); // errors
+            model.addAttribute("ad", ad); // to make the form sticky
+            return "ads/create";
+        }
+
         // This gets the logged in user in the back end.
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ad.setUser(user);

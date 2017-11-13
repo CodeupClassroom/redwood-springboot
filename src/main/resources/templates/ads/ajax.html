@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head th:replace="fragments/head :: main-header('All the ads')"></head>
+<body>
+
+<nav th:replace="fragments/navbar :: mainNavbar"></nav>
+
+    <h1>Ads with AJAX</h1>
+    <div id="ads"></div>
+
+    <footer th:include="fragments/footer :: footer"></footer>
+    <!--This custom js is after jquery is being loaded-->
+    <script src="/js/ads.js"></script>
+</body>
+</html>

@@ -88,4 +88,15 @@ public class AdsController {
         return "redirect:/ads";
     }
 
+    @GetMapping("/ads.json")
+    @ResponseBody
+    public Iterable<Ad> viewAllAdsInJSONFormat(){
+        return adsDao.findAll();
+    }
+
+    @GetMapping("/ads/ajax")
+    public String showAlternateViewAds(){
+        return "ads/ajax";
+    }
+
 }

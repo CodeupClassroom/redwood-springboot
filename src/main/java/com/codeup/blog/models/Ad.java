@@ -1,5 +1,6 @@
 package com.codeup.blog.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
@@ -25,6 +26,7 @@ public class Ad {
     private String description;
 
     @OneToOne
+    @JsonManagedReference
     private User user;
 
     // This doesn't mean that it's gonna to create a column, not a relationship in the mysql tables

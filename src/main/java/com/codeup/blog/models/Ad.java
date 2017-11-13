@@ -1,8 +1,10 @@
 package com.codeup.blog.models;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -14,9 +16,12 @@ public class Ad {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Title cannot be empty")
+    @Size(min= 3, message = "Title cannot have less than 3 characters")
     private String title;
 
     @Column(nullable = false)
+    @NotBlank(message = "Description cannot be empty")
     private String description;
 
     @OneToOne

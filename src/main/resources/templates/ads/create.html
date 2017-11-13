@@ -8,9 +8,16 @@
 <form th:action="@{/ads/create}" method="post" th:object="${ad}">
     Title:
     <input th:field="*{title}" />
+    <div
+        class="alert alert-danger"
+        th:if="${#fields.hasErrors('title')}"
+        th:errors="*{title}"
+    >
+    </div>
     <br />
     Description:
     <input th:field="*{description}" />
+    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
     <br />
     <input type="submit" />
 </form>
